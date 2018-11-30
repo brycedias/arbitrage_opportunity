@@ -121,7 +121,7 @@ function main(rates, currencies) {
   console.log('rate of eur -> usd', ratesObject[0][3])
   let graph = new Graph(currencies.length, ratesObject, currencies)
 
-  graph.bellmanFord(0, ratesObject)
+  graph.bellmanFord(0)
 }
 
 // retrieves the base currency from the user
