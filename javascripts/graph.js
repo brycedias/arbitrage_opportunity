@@ -21,21 +21,22 @@ class Graph {
       for (let targetVertex of this.vertices) {
         this.adjMatrix[startVertex][targetVertex] = ratesObject[startVertex][targetVertex]
       }
-    }
-
-
+    } 
 
   }
 
-  bellmanFord(startVertex, ratesObject) {
+  bellmanFord(startVertex) {
     let distance = new Array(this.vertices.length)
-    let previous = new Array(this.vertices.length)   
+    let previous = new Array(this.vertices.length)
     for (let i = 0; i < this.vertices.length; i++) {
-      distance[i] = Number.MAX_SAFE_INTEGER
-      previous[i] = undefined
+      if (i != startVertex) {
+        distance[i] = Number.MAX_SAFE_INTEGER
+        previous[i] = undefined
+      }
     }
 
     distance[startVertex] = 0
+    console.log(startVertex)
     let tempDistance
 
     for (let v = 0; v < this.vertices.length; v++) {
@@ -46,7 +47,6 @@ class Graph {
         if (tempDistance < distance[v]) {
           distance[v] = tempDistance
           previous[v] = u
-          this.path.push(v)
         }
       }
     }
@@ -54,23 +54,12 @@ class Graph {
     for (let u = 0; u < this.vertices.length; u++) {
       for (let v = 0; v < this.vertices.length; v++) {
         if (distance[u] + this.adjMatrix[u][v] < distance[v]) {
-          console.error(`${u} -> ${v}`)
+          this.path.push(v)
         }
       }
     }
     // debugger
     console.log(distance, previous)
-
-    let sum = 0
-    let prod = 1
-    for (let num of distance) {
-      sum += num
-      if (num != 0)
-        prod *= num
-    }
-
-    console.log(`sum ${sum}`)
-    console.log(`prod ${prod}`)
 
     console.log(`path: ${this.path}`)
   }

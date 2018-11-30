@@ -17,7 +17,7 @@ const CURRENCIES = ['EUR', 'GBP', 'CAD', 'USD', 'JPY']
 
 //TODO:- make more general
 let EUR_rates = []
-let GBP_rates = []
+let GBP_rates = [] 
 let CAD_rates = []
 let USD_rates = []
 let JPY_rates = []
