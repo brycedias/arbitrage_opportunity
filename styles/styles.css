@@ -1,0 +1,101 @@
+/* font-family: 'Open Sans', sans-serif;
+
+font-family: 'Roboto', sans-serif; */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  font-family: "Open Sans", sans-serif;
+}
+
+h3 {
+  font-family: "Roboto", sans-serif;
+}
+
+.left {
+  left: 0;
+  background-color: #f3f3f3;
+}
+
+.right {
+  right: 0;
+  background-color: #ffffff;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.text_bar {
+  width: 300px;
+}
+
+.button {
+  margin: 20px;
+  background-color: #4c5760;
+  color: #d7ceb2;
+}
+
+.medium {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #cef;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #cef transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
