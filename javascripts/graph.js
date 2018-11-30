@@ -27,7 +27,7 @@ class Graph {
 
   }
 
-  bellmanFord(startVertex, ratesObject) {
+  bellmanFord(startVertex) {
     let distance = new Array(this.vertices.length)
     let previous = new Array(this.vertices.length)   
     for (let i = 0; i < this.vertices.length; i++) {
@@ -61,7 +61,7 @@ class Graph {
     // debugger
     console.log(distance, previous)
 
-    let sum = 0
+/*     let sum = 0
     let prod = 1
     for (let num of distance) {
       sum += num
@@ -70,7 +70,7 @@ class Graph {
     }
 
     console.log(`sum ${sum}`)
-    console.log(`prod ${prod}`)
+    console.log(`prod ${prod}`) */
 
     console.log(`path: ${this.path}`)
   }
