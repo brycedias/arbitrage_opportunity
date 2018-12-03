@@ -3,7 +3,7 @@ document.getElementById('start-button').addEventListener("click", start)
 //function to start the application and retrieve the exchange rates data
 function start() {
   // adds a spinner to the page to indicate to the user that the page is loading
-  document.getElementById('cy').classList.remove('hidden')
+  // document.getElementById('cy').classList.remove('hidden')
   // gets the base currency and user amount from the HTML
   const baseCurrency = getBaseCurrency()
   let userAmount = getUserAmount()
@@ -120,8 +120,13 @@ function main(rates, currencies) {
   // console.log('rate of usd -> gbp', ratesObject['USD']['GBP'])
   console.log('rate of eur -> usd', ratesObject[0][3])
   let graph = new Graph(currencies.length, ratesObject, currencies)
+<<<<<<< HEAD
 
   graph.bellmanFord(0)
+=======
+  debugger
+  floydWarshall(graph)
+>>>>>>> 06cfc5628b4e2bc942a007353fcf2e8adb12f378
 }
 
 // retrieves the base currency from the user
