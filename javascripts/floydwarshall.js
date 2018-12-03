@@ -31,18 +31,34 @@ function floydWarshall(G) {
   for (let i = 0; i < V; i++) {
     dist[i] = new Array(V)
   }
-  debugger
+  //debugger
+  //console.log('first dist', dist)
   for (let v = 0; v < V; v++) {
     dist[v][v] = 1
   }
-  debugger
+  //debugger
+  //console.log('second dist', dist)
   for (let u = 0; u < V; u++) {
     for (let v = 0; v < V; v++) {
       dist[u][v] = G.adjMatrix[u][v]
     }
   }
   debugger
-  console.log(dist)
+  console.log('G.adjMatrix', G.adjMatrix)
+  //console.log('third dist', dist)
+  
+  for (let k = 1; k < V; k++){
+	  for (let i = 1; i < V; i++){
+		  for (let j = 1; j < V; j++){
+			  if (dist[i][j] > dist[i][k] + dist[k][j]){
+				  dist[i][j] = dist[i][k] + dist[k][j]
+			  }
+		  }
+	  }
+  }
+  debugger
+  console.log('fourth dist', dist)
+ 
 
 }
 

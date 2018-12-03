@@ -120,13 +120,8 @@ function main(rates, currencies) {
   // console.log('rate of usd -> gbp', ratesObject['USD']['GBP'])
   console.log('rate of eur -> usd', ratesObject[0][3])
   let graph = new Graph(currencies.length, ratesObject, currencies)
-<<<<<<< HEAD
-
-  graph.bellmanFord(0)
-=======
   debugger
   floydWarshall(graph)
->>>>>>> 06cfc5628b4e2bc942a007353fcf2e8adb12f378
 }
 
 // retrieves the base currency from the user
