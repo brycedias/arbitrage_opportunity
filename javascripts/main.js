@@ -115,10 +115,11 @@ function main(rates, currencies) {
     return obj
   }
 
-  console.log('rates object, line 77')
-  console.log(ratesObject)
+  //console.log('rates object, line 77')
+  //console.log('Natural log of original rates (distances)')
+  //console.log('Order of Currency Arrays: EUR, GBP, CAD, USD, JPY', ratesObject)
   // console.log('rate of usd -> gbp', ratesObject['USD']['GBP'])
-  console.log('rate of eur -> usd', ratesObject[0][3])
+  // console.log('rate of eur -> usd', ratesObject[0][3])
   let graph = new Graph(currencies.length, ratesObject, currencies)
   debugger
   floydWarshall(graph)
@@ -128,7 +129,7 @@ function main(rates, currencies) {
 function getBaseCurrency() {
   let e = document.getElementById('baseCurrency')
   let baseCurrency = e.value
-  console.log(baseCurrency)
+  console.log('baseCurrency', baseCurrency)
   return baseCurrency
 }
 
@@ -136,7 +137,7 @@ function getBaseCurrency() {
 // retrieves the monetary amount from the user
 function getUserAmount() {
   let userAmount = document.getElementById('userAmount').value
-  console.log(userAmount)
+  console.log('userAmount', userAmount)
   return userAmount
 }
 

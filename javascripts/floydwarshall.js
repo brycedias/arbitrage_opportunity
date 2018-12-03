@@ -1,29 +1,24 @@
+/*
 
-// let dist be a V X V array of min distances
-// initialized to Infinity
 
-// let next be a V X V array of vertex indices
-// initialized to null
+Bryce and I took implemented the Floyd-Warshall algorithm
+based on the algorithm below:
 
-// procedure FloydWarshallWithPathReconstruction ()
-//    for each edge (u,v)
-//       dist[u][v] ← w(u,v)  // the weight of the edge (u,v)
-//       next[u][v] ← v
-//    for k from 1 to |V| // standard Floyd-Warshall implementation
-//       for i from 1 to |V|
-//          for j from 1 to |V|
-//             if dist[i][j] > dist[i][k] + dist[k][j] then
-//                dist[i][j] ← dist[i][k] + dist[k][j]
-//                next[i][j] ← next[i][k]
 
-// procedure Path(u, v)
-//    if next[u][v] = null then
-//        return []
-//    path = [u]
-//    while u ≠ v
-//        u ← next[u][v]
-//        path.append(u)
-//    return path
+
+let V = number of vertices in graph
+let dist = V * V array of minimum distances
+for each vertex v
+	dist[v][v] <- 0
+for each edge(u,v)
+	dist[u][v] <- weight(u,v)
+for k from 1 to V
+	for i from 1 to V
+		for j from 1 to V
+			if dist[i][j] > dist[i][k] + dist[k][j]
+				dist[i][j] <- dist[i][k] + dist[k][j]
+			end if
+*/
 
 function floydWarshall(G) {
   let V = G.adjMatrix.length
@@ -44,7 +39,10 @@ function floydWarshall(G) {
     }
   }
   debugger
-  console.log('G.adjMatrix', G.adjMatrix)
+  
+  console.log('%cOrder of Currency Arrays: EUR, GBP, CAD, USD, JPY', 'color: green')
+  console.log('%cG.adjMatrix (Natural log of original rates)', 'color: red;')
+  console.log(G.adjMatrix)
   //console.log('third dist', dist)
   
   for (let k = 1; k < V; k++){
@@ -57,11 +55,12 @@ function floydWarshall(G) {
 	  }
   }
   debugger
-  console.log('fourth dist', dist)
+  console.log('%cOrder of Currency Arrays: EUR, GBP, CAD, USD, JPY', 'color: green')
+  console.log('%cshortest distances found between all points', 'color: blue;')
+  console.log(dist)
  
 
 }
-
 
 
 
