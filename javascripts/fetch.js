@@ -33,10 +33,10 @@ function fetchData() {
       .then((data) => {
         const base = data.base
         const temprates = Object.values(data.rates)
-		//console.log('Original rates', temprates)
+		console.log('Original rates', temprates)
         const rates = temprates.map((x) => {
           if (x !== 1) {
-            return -1 * Math.log(x)
+            return 1 * Math.log(x)
           } else {
             return x
           }

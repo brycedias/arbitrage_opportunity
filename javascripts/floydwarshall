@@ -29,7 +29,7 @@ function floydWarshall(G) {
   //debugger
   //console.log('first dist', dist)
   for (let v = 0; v < V; v++) {
-    dist[v][v] = 0
+    dist[v][v] = 1
   }
   //debugger
   //console.log('second dist', dist)
