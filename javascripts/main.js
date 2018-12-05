@@ -168,7 +168,12 @@ function main(rates, currencies) {
   draw(CURRENCIES, shortestPathNames, pathRates)
 
 
-
+  let pathDisplay = `<p> The path taken was `
+  for (let v of shortestPathNames) {
+    pathDisplay += `${v} `
+  }
+  pathDisplay += '</p>'
+  document.getElementById('displayPath').innerHTML = pathDisplay
   document.getElementById('displayToUser').innerHTML = `<p>You made ${profit} dollars, for a total of ${profit - getUserAmount()} dollars in profit!</p>`
 }
 
