@@ -33,15 +33,9 @@ function fetchData() {
       .then((data) => {
         const base = data.base
         const temprates = Object.values(data.rates)
-		    // console.log('Original rates', temprates)
         const rates = temprates.map((x) => {
-          // if (x !== 1) {
-            return -1 * Math.log(x)
-          // } else {
-          //   return x
-          // }
+          return -1 * Math.log(x)
         })
-        // console.log(rates)
         const result = Object.keys(rates).map((key) => {
           return rates[key]
         })
@@ -56,7 +50,6 @@ function fetchData() {
       })
       .then((ratesObject) => {
         if (ratesObject.length == 5) {
-          // console.log(ratesObject)
           main(ratesObject, CURRENCIES)
         }
       })
@@ -64,21 +57,15 @@ function fetchData() {
 }
 
 function finished(arr) {
-  // console.log('%cFinished!', 'color: red; font-weight: bold;')
-  // console.log(arr)
   arr = sortArray(arr)
   const ratesObject = arr.map((x) => {
-    // console.log(x)
     let obj = {}
     obj[CURRENCIES[arr.indexOf(x)]] = x
     return obj
   })
-  // console.log('%cRates Object:', 'color: cyan; font-weight: bold;')
-  // console.log(ratesObject)
   return ratesObject
 }
 
-//TODO:- make more general
 function pushRates(base, exchanges) {
   switch (base) {
     case 'EUR':
@@ -110,8 +97,6 @@ function sortArray(arr) {
     tempArray[x] = new Array(arr.length)
   }
   for (let exchangeRates of arr) {
-    // console.log('%cExchange Rates', 'color:orange;')
-    // console.log(exchangeRates)
     if (exchangeRates[0] == 0) {
       tempArray[0] = exchangeRates
     } else if (exchangeRates[1] == 0) {
@@ -125,7 +110,5 @@ function sortArray(arr) {
     }
   }
 
-  // console.log('%cTempArray', 'color: green; font-weight:bold;')
-  // console.log(tempArray)
   return tempArray
 }

@@ -46,7 +46,6 @@ class Graph {
         }
       }
     }
-    // debugger
     for (let u = 0; u < this.vertices.length; u++) {
       for (let v = 0; v < this.vertices.length; v++) {
         if (distance[u] + this.adjMatrix[u][v] < distance[v]) {
@@ -54,19 +53,7 @@ class Graph {
         }
       }
     }
-    // debugger
     console.log(distance, previous)
-
-/*     let sum = 0
-    let prod = 1
-    for (let num of distance) {
-      sum += num
-      if (num != 0)
-        prod *= num
-    }
-
-    console.log(`sum ${sum}`)
-    console.log(`prod ${prod}`) */
 
     console.log(`path: ${this.path}`)
   }

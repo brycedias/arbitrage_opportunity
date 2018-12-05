@@ -2,7 +2,6 @@ document.getElementById('start-button').addEventListener("click", start)
 
 //function to start the application and retrieve the exchange rates data
 function start() {
-  // adds a spinner to the page to indicate to the user that the page is loading
   // gets the base currency and user amount from the HTML
   const baseCurrency = getBaseCurrency()
   let userAmount = getUserAmount()
@@ -20,9 +19,6 @@ function start() {
 
 // function to control the flow of operations for the bellman ford path
 function main(rates, currencies) {
-  // document.getElementById('cy').classList.add('hidden')
-  // console.log('%cIn Main Function', 'color: green; font-weight: bold;')
-  // console.log(rates, currencies)
 
   let allRatesArray = []
   for (let i in currencies) {
@@ -114,44 +110,30 @@ function main(rates, currencies) {
     return obj
   }
 
-  //console.log('rates object, line 77')
-  //console.log('Natural log of original rates (distances)')
-  //console.log('Order of Currency Arrays: EUR, GBP, CAD, USD, JPY', ratesObject)
-  // console.log('rate of usd -> gbp', ratesObject['USD']['GBP'])
-  // console.log('rate of eur -> usd', ratesObject[0][3])
   let graph = new Graph(currencies.length, ratesObject, currencies)
 
   // floydWarshall(graph)
   let shortestPath = demoShortestPath(getBaseCurrency())
-  // console.log(shortestPath)
 
   let shortestPathRates = []
-  // debugger
   let i = 0
   let j = 1
 
   while (j < shortestPath.length) {
     shortestPathRates.push(ratesObject[shortestPath[i]][shortestPath[j]])
-    // console.log(ratesObject[i][j])
     i += 1
     j += 1
   }
-
-  // console.log(shortestPathRates)
 
   const finalRates = shortestPathRates.map((x) => {
     x *= -1
     return Math.floor(Math.exp(x))
   })
 
-  // console.log(finalRates)
-
   let profit = getUserAmount()
   for (rate of finalRates) {
     profit *= rate
   }
-
-  // console.log(profit)
 
   shortestPathNames = []
 
@@ -181,7 +163,6 @@ function main(rates, currencies) {
 function getBaseCurrency() {
   let e = document.getElementById('baseCurrency')
   let baseCurrency = e.value
-  // console.log('baseCurrency', baseCurrency)
   return baseCurrency
 }
 
@@ -189,7 +170,6 @@ function getBaseCurrency() {
 // retrieves the monetary amount from the user
 function getUserAmount() {
   let userAmount = document.getElementById('userAmount').value
-  // console.log('userAmount', userAmount)
   return userAmount
 }
 
