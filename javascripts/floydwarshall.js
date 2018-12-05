@@ -62,7 +62,9 @@ function floydWarshall(G) {
 
 }
 
-
+function demoShortestPath() {
+  return [0, 3, 4, 0]
+}
 
 
 

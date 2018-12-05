@@ -121,8 +121,40 @@ function main(rates, currencies) {
   // console.log('rate of usd -> gbp', ratesObject['USD']['GBP'])
   // console.log('rate of eur -> usd', ratesObject[0][3])
   let graph = new Graph(currencies.length, ratesObject, currencies)
+
+  // floydWarshall(graph)
+  let shortestPath = demoShortestPath()
+  console.log(shortestPath)
+
+  let shortestPathRates = []
   debugger
-  floydWarshall(graph)
+  let i = 0
+  let j = 1
+
+  while(j < shortestPath.length) {
+    shortestPathRates.push(ratesObject[shortestPath[i]][shortestPath[j]])
+    console.log(ratesObject[i][j])
+    i += 1
+    j += 1
+  }
+
+  console.log(shortestPathRates)
+
+  const finalRates = shortestPathRates.map((x) => {
+    x *= -1
+    return Math.floor(Math.exp(x))
+  })
+
+  console.log(finalRates)
+
+  let profit = getUserAmount()
+  for (rate of finalRates) {
+    profit *= rate
+  }
+
+  console.log(profit)
+
+  document.getElementById('displayToUser').innerHTML = `<p>You made ${profit} dollars, for a total of ${profit - getUserAmount()} dollars in profit!</p>`
 }
 
 // retrieves the base currency from the user

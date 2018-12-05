@@ -6,8 +6,6 @@ class Graph {
       this.adjMatrix[i] = new Array(numberOfVertices)
     }
 
-    this.path = []
-
     // ratesObject[USD][GBP] => rate of usd -> gbp
     let EUR = 0
     let GBP = 1
@@ -22,8 +20,6 @@ class Graph {
         this.adjMatrix[startVertex][targetVertex] = ratesObject[startVertex][targetVertex]
       }
     }
-
-
 
   }
 
