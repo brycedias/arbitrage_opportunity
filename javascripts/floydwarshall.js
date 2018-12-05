@@ -62,8 +62,20 @@ function floydWarshall(G) {
 
 }
 
-function demoShortestPath() {
-  return [0, 3, 4, 0]
+function demoShortestPath(base) {
+  switch (base) {
+    case 'EUR':
+      return [0, 3, 4, 0]
+    case 'USD':
+      return [3, 0, 2, 1, 3]
+    case 'GBP':
+      return [1, 2, 1]
+    case 'CAD':
+      return [2, 1, 0, 3, 2]
+    case 'JPY':
+      return [4, 0, 3, 4]
+  }
+  
 }
 
 

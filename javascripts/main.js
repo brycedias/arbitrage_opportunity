@@ -122,7 +122,7 @@ function main(rates, currencies) {
   let graph = new Graph(currencies.length, ratesObject, currencies)
 
   // floydWarshall(graph)
-  let shortestPath = demoShortestPath()
+  let shortestPath = demoShortestPath(getBaseCurrency())
   // console.log(shortestPath)
 
   let shortestPathRates = []
