@@ -3,7 +3,6 @@ document.getElementById('start-button').addEventListener("click", start)
 //function to start the application and retrieve the exchange rates data
 function start() {
   // adds a spinner to the page to indicate to the user that the page is loading
-  // document.getElementById('cy').classList.remove('hidden')
   // gets the base currency and user amount from the HTML
   const baseCurrency = getBaseCurrency()
   let userAmount = getUserAmount()
@@ -33,46 +32,46 @@ function main(rates, currencies) {
   // console.log(allRatesArray)
   const ratesObject = arrayToObject()
 
-  // function arrayToObject() {
-  //   let obj = {
-  //     EUR: {
-  //       EUR: 1,
-  //       GBP: allRatesArray[0][0][1],
-  //       CAD: allRatesArray[0][0][2],
-  //       USD: allRatesArray[0][0][3],
-  //       JPY: allRatesArray[0][0][4],
-  //     },
-  //     GBP: {
-  //       EUR: allRatesArray[1][0][0],
-  //       GBP: 1,
-  //       CAD: allRatesArray[1][0][2],
-  //       USD: allRatesArray[1][0][3],
-  //       JPY: allRatesArray[1][0][4],
-  //     },
-  //     CAD: {
-  //       EUR: allRatesArray[2][0][0],
-  //       GBP: allRatesArray[2][0][1],
-  //       CAD: 1,
-  //       USD: allRatesArray[2][0][3],
-  //       JPY: allRatesArray[2][0][4],
-  //     },
-  //     USD: {
-  //       EUR: allRatesArray[3][0][0],
-  //       GBP: allRatesArray[3][0][1],
-  //       CAD: allRatesArray[3][0][2],
-  //       USD: 1,
-  //       JPY: allRatesArray[3][0][4],
-  //     },
-  //     JPY: {
-  //       EUR: allRatesArray[4][0][0],
-  //       GBP: allRatesArray[4][0][1],
-  //       CAD: allRatesArray[4][0][2],
-  //       USD: allRatesArray[4][0][3],
-  //       JPY: 1,
-  //     },
-  //   }
-  //   return obj
-  // }
+  function arrayToObjectWithNames() {
+    let obj = {
+      EUR: {
+        EUR: 1,
+        GBP: allRatesArray[0][0][1],
+        CAD: allRatesArray[0][0][2],
+        USD: allRatesArray[0][0][3],
+        JPY: allRatesArray[0][0][4],
+      },
+      GBP: {
+        EUR: allRatesArray[1][0][0],
+        GBP: 1,
+        CAD: allRatesArray[1][0][2],
+        USD: allRatesArray[1][0][3],
+        JPY: allRatesArray[1][0][4],
+      },
+      CAD: {
+        EUR: allRatesArray[2][0][0],
+        GBP: allRatesArray[2][0][1],
+        CAD: 1,
+        USD: allRatesArray[2][0][3],
+        JPY: allRatesArray[2][0][4],
+      },
+      USD: {
+        EUR: allRatesArray[3][0][0],
+        GBP: allRatesArray[3][0][1],
+        CAD: allRatesArray[3][0][2],
+        USD: 1,
+        JPY: allRatesArray[3][0][4],
+      },
+      JPY: {
+        EUR: allRatesArray[4][0][0],
+        GBP: allRatesArray[4][0][1],
+        CAD: allRatesArray[4][0][2],
+        USD: allRatesArray[4][0][3],
+        JPY: 1,
+      },
+    }
+    return obj
+  }
 
   function arrayToObject() {
     let obj = {
@@ -124,35 +123,51 @@ function main(rates, currencies) {
 
   // floydWarshall(graph)
   let shortestPath = demoShortestPath()
-  console.log(shortestPath)
+  // console.log(shortestPath)
 
   let shortestPathRates = []
-  debugger
+  // debugger
   let i = 0
   let j = 1
 
-  while(j < shortestPath.length) {
+  while (j < shortestPath.length) {
     shortestPathRates.push(ratesObject[shortestPath[i]][shortestPath[j]])
-    console.log(ratesObject[i][j])
+    // console.log(ratesObject[i][j])
     i += 1
     j += 1
   }
 
-  console.log(shortestPathRates)
+  // console.log(shortestPathRates)
 
   const finalRates = shortestPathRates.map((x) => {
     x *= -1
     return Math.floor(Math.exp(x))
   })
 
-  console.log(finalRates)
+  // console.log(finalRates)
 
   let profit = getUserAmount()
   for (rate of finalRates) {
     profit *= rate
   }
 
-  console.log(profit)
+  // console.log(profit)
+
+  shortestPathNames = []
+
+  for (i of shortestPath) {
+    shortestPathNames.push(CURRENCIES[i])
+  }
+
+  console.log(shortestPathNames)
+
+  let pathRates = arrayToObjectWithNames()
+
+
+
+  draw(CURRENCIES, shortestPathNames, pathRates)
+
+
 
   document.getElementById('displayToUser').innerHTML = `<p>You made ${profit} dollars, for a total of ${profit - getUserAmount()} dollars in profit!</p>`
 }
@@ -161,7 +176,7 @@ function main(rates, currencies) {
 function getBaseCurrency() {
   let e = document.getElementById('baseCurrency')
   let baseCurrency = e.value
-  console.log('baseCurrency', baseCurrency)
+  // console.log('baseCurrency', baseCurrency)
   return baseCurrency
 }
 
@@ -169,7 +184,7 @@ function getBaseCurrency() {
 // retrieves the monetary amount from the user
 function getUserAmount() {
   let userAmount = document.getElementById('userAmount').value
-  console.log('userAmount', userAmount)
+  // console.log('userAmount', userAmount)
   return userAmount
 }
 

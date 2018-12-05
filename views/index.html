@@ -3,13 +3,12 @@
 
 <head>
   <link href="../styles/styles.css" rel="stylesheet" />
-  <!-- <link href="../stylesheets/graphstyle.css" rel="stylesheet" /> -->
+  <link href="../styles/graphstyles.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
   <script defer src="../javascripts/fetch.js"></script>
   <script defer src="../javascripts/main.js"></script>
   <script src="../javascripts/graph.js"></script>
   <script src="../javascripts/floydwarshall.js"></script>
-  <!-- <script defer src="../javascripts/input.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.17/cytoscape.min.js"></script>
   <meta charset="utf-8" />
@@ -28,11 +27,11 @@
       <br />
       <div class="select">
         <select id="baseCurrency">
-          <option>USD</option>
+          <option>EUR</option>
           <option>GBP</option>
           <option>CAD</option>
           <option>JPY</option>
-          <option>EUR</option>
+          <option>USD</option>
         </select>
       </div>
       <br />
@@ -43,11 +42,10 @@
     </div>
   </div>
   <div class="split right">
-    <div class="centered">
-      <div class = "cy hidden" id="cy">
-        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>        
+    <!-- <div class="centered"> -->
+      <div class="cy" id="cy">
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </body>
 
