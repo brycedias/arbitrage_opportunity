@@ -9,10 +9,8 @@ function start() {
   if (!checkUserAmount(userAmount)) {
     userAmount = getUserAmount()
     alert('Enter a valid monetary amount')
-  } else {
-    // setBaseCurrency(baseCurrency)
-    // setAmount(userAmount)
-  }
+  } 
+
   // gets the exchange rates from the API
   fetchData()
 }
@@ -28,6 +26,8 @@ function main(rates, currencies) {
   // console.log(allRatesArray)
   const ratesObject = arrayToObject()
 
+  // returns a JavaScript Object so the exchange rates are easily accessible
+  // uses the currency symbols
   function arrayToObjectWithNames() {
     let obj = {
       EUR: {
@@ -69,6 +69,8 @@ function main(rates, currencies) {
     return obj
   }
 
+  // returns a JavaScript Object so the exchange rates are easily accessible
+  // uses the indicies of the array
   function arrayToObject() {
     let obj = {
       0: {
@@ -110,51 +112,57 @@ function main(rates, currencies) {
     return obj
   }
 
+  // creates a graph object for use of either the bellman-ford or floyd warshall algorithm
   let graph = new Graph(currencies.length, ratesObject, currencies)
 
   // floydWarshall(graph)
+  // returns a demo shortest path for testing purposes
   let shortestPath = demoShortestPath(getBaseCurrency())
 
+  // creating an array to hold the exchange rates between the currencies traversed
   let shortestPathRates = []
-  let i = 0
-  let j = 1
 
-  while (j < shortestPath.length) {
-    shortestPathRates.push(ratesObject[shortestPath[i]][shortestPath[j]])
+  // pushing the rates onto the array
+  let i = 0
+  while (i+1 < shortestPath.length) {
+    shortestPathRates.push(ratesObject[shortestPath[i]][shortestPath[i+1]])
     i += 1
-    j += 1
   }
 
+  // converting the rates back to the original rates
   const finalRates = shortestPathRates.map((x) => {
     x *= -1
     return Math.floor(Math.exp(x))
   })
 
+  // calculating the profit that the user has generated
   let profit = getUserAmount()
   for (rate of finalRates) {
     profit *= rate
   }
 
+  // creating an array to hold the Currency Symbols of the vertices traversed
   shortestPathNames = []
 
+  // filling the array with the Symbols
   for (i of shortestPath) {
     shortestPathNames.push(CURRENCIES[i])
   }
 
-  console.log(shortestPathNames)
-
+  // creating JavaScript Object to pass into the draw function
   let pathRates = arrayToObjectWithNames()
 
-
-
+  // draws the graph with the given information
   draw(CURRENCIES, shortestPathNames, pathRates)
 
-
+  // string to display on the HTML page showing the path that was taken
   let pathDisplay = `<p> The path taken was `
   for (let v of shortestPathNames) {
     pathDisplay += `${v} `
   }
   pathDisplay += '</p>'
+
+  // generates a string to display the profit that was gained
   document.getElementById('displayPath').innerHTML = pathDisplay
   document.getElementById('displayToUser').innerHTML = `<p>You made ${profit} dollars, for a total of ${profit - getUserAmount()} dollars in profit!</p>`
 }
@@ -181,13 +189,3 @@ function checkUserAmount(userAmount) {
   }
   return false
 }
-
-// sets the user amount
-// function setAmount(userAmount) {
-//   constants['userAmount'] = userAmount
-// }
-
-// // sets the base currency
-// function setBaseCurrency(baseCurrency) {
-//   constants['baseCurrency'] = baseCurrency
-// }

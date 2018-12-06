@@ -13,33 +13,42 @@ const URLs = [
 ]
 
 const CURRENCIES = ['EUR', 'GBP', 'CAD', 'USD', 'JPY']
-// associates the currencies with their indicies to avoid confusion
 
-//TODO:- make more general
+//TODO:- Make more general
+// Arrays to hold the exchange rates with the different currencies
 let EUR_rates = []
 let GBP_rates = [] 
 let CAD_rates = []
 let USD_rates = []
 let JPY_rates = []
 
+// rates array to hold all of the exchange rates in the correct order
 let ratesArray = []
-// END TODO
+
+//Function to fetch the data from the API
 function fetchData() {
+  // iterates through each URL in the array of URLs
   for (let url of URLs) {
+    // attemps to fetch the data from the URL provided
     fetch(url)
+      // if successfully connected to the url, converts the data to JSON
       .then((resp) => {
         return resp.json()
       })
+      // after converting the data to JSON, finds the base and exchange rates
       .then((data) => {
         const base = data.base
         const temprates = Object.values(data.rates)
+        // returns the negative natural log of all the rates for the shortest path algorithm
         const rates = temprates.map((x) => {
           return -1 * Math.log(x)
         })
+
+        // returns the
         const result = Object.keys(rates).map((key) => {
           return rates[key]
         })
-        // const result = rates
+        
         pushRates(base, result)
 
         if (ratesArray.length == 5) {
