@@ -44,11 +44,11 @@ function fetchData() {
           return -1 * Math.log(x)
         })
 
-        // returns the
+        // returns the 
         const result = Object.keys(rates).map((key) => {
           return rates[key]
         })
-        
+
         pushRates(base, result)
 
         if (ratesArray.length == 5) {
@@ -66,6 +66,7 @@ function fetchData() {
 }
 
 function finished(arr) {
+  //determines if the array is finished i.e. the 
   arr = sortArray(arr)
   const ratesObject = arr.map((x) => {
     let obj = {}
