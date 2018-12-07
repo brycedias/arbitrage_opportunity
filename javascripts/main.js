@@ -1,4 +1,5 @@
 document.getElementById('start-button').addEventListener("click", start)
+document.getElementById('refresh-button').addEventListener("click", refresh)
 
 //function to start the application and retrieve the exchange rates data
 function start() {
@@ -13,6 +14,10 @@ function start() {
 
   // gets the exchange rates from the API
   fetchData()
+}
+
+function refresh() {
+  window.location.reload()
 }
 
 // function to control the flow of operations for the bellman ford path
@@ -165,6 +170,7 @@ function main(rates, currencies) {
   // generates a string to display the profit that was gained
   document.getElementById('displayPath').innerHTML = pathDisplay
   document.getElementById('displayToUser').innerHTML = `<p>You made ${profit} dollars, for a total of ${profit - getUserAmount()} dollars in profit!</p>`
+  document.getElementById('refresh-button').classList.remove('hidden')
 }
 
 // retrieves the base currency from the user

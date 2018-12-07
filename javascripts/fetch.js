@@ -44,20 +44,22 @@ function fetchData() {
           return -1 * Math.log(x)
         })
 
-        // returns the 
+        // returns the array of rates
         const result = Object.keys(rates).map((key) => {
           return rates[key]
         })
 
         pushRates(base, result)
 
+        // is true when the array of all rates holds the 5 other arrays
         if (ratesArray.length == 5) {
           const ratesObject = finished(ratesArray)
-          
+          //returns the finished rates object
           return ratesObject
         }
       })
       .then((ratesObject) => {
+        //with the finished rates object, calls the main function
         if (ratesObject.length == 5) {
           main(ratesObject, CURRENCIES)
         }
@@ -66,7 +68,7 @@ function fetchData() {
 }
 
 function finished(arr) {
-  //determines if the array is finished i.e. the 
+  // converts the rates array into an object
   arr = sortArray(arr)
   const ratesObject = arr.map((x) => {
     let obj = {}
@@ -77,6 +79,7 @@ function finished(arr) {
 }
 
 function pushRates(base, exchanges) {
+  // pushes the exchange rates into the appropriate array
   switch (base) {
     case 'EUR':
       EUR_rates = exchanges
@@ -102,6 +105,8 @@ function pushRates(base, exchanges) {
 }
 
 function sortArray(arr) {
+  // sorts the array of arrays into the correct places so there are 1's on
+  // the diagonal
   let tempArray = new Array(arr.length)
   for (let x = 0; x < arr.length; x++) {
     tempArray[x] = new Array(arr.length)
